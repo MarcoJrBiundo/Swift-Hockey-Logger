@@ -17,6 +17,22 @@ class GameStore{
         return documentDirectory.appendingPathComponent("games.plist")
     }()
     
+    init(){
+        
+        
+        do{
+            let data = try Data(contentsOf: itemArchiveUrl)
+            let unarchiver = PropertyListDecoder()
+            let games = try unarchiver.decode([Game].self, from: data)
+            allGames = games
+        }catch{
+            print("Error reading in saved games")
+            
+        }
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(saveChanges), name: UIScene.didEnterBackgroundNotification, object: nil)
+    }
+    
     
     
     
@@ -44,7 +60,7 @@ class GameStore{
         allGames.insert(movedGame, at: toIndex)
     }
     
-    func saveChanges() -> Bool{
+    @objc func saveChanges() -> Bool{
         print("Saving games to: \(itemArchiveUrl)")
         do{
             let encoder = PropertyListEncoder()
