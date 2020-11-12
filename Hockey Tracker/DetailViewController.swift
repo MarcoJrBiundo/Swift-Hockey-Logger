@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DetailViewController: UIViewController{
+class DetailViewController: UIViewController, UITextFieldDelegate{
     
     @IBOutlet var opponentField: UITextField!
     @IBOutlet var goalsField: UITextField!
@@ -17,7 +17,15 @@ class DetailViewController: UIViewController{
     @IBOutlet var date: UIDatePicker!
     
     
-    var game: Game!
+    var game: Game! {
+        didSet{
+            if(game.opponent == ""){
+                navigationItem.title = "New Game"
+            }else{
+                navigationItem.title = game.opponent
+            }
+        }
+    }
     
    let numberFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
@@ -45,6 +53,7 @@ class DetailViewController: UIViewController{
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        view.endEditing(true)
         game.opponent = opponentField.text ?? ""
         if let assistsText = assistsField.text,
             let value = numberFormatter.number(from: assistsText){
@@ -70,6 +79,14 @@ class DetailViewController: UIViewController{
         game.setPoints()
         
         
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    @IBAction func backgroundTapped(_ sender: UITapGestureRecognizer) {
+        view.endEditing(true)
     }
     
 

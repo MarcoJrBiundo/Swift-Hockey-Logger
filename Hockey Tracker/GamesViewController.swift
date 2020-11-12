@@ -14,6 +14,11 @@ class GamesViewController: UITableViewController{
     var gameStore: GameStore!
     
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        navigationItem.leftBarButtonItem = editButtonItem
+    }
+    
     let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
@@ -23,7 +28,11 @@ class GamesViewController: UITableViewController{
     
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return gameStore.allGames.count
+        let count = gameStore.allGames.count
+        
+        updateTitle(count: count)
+
+        return count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -54,7 +63,7 @@ class GamesViewController: UITableViewController{
     }
     
     
-    @IBAction func addNewGame(_ sender: UIButton){
+    @IBAction func addNewGame(_ sender: UIBarButtonItem){
         
         let newGame = gameStore.createGame()
         if let index = gameStore.allGames.firstIndex(of: newGame){
@@ -106,5 +115,19 @@ class GamesViewController: UITableViewController{
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView.reloadData()
+    }
+    
+    func updateTitle(count: Int){
+        if(count == 0){
+            navigationItem.title = "No Games"
+        }else if(count == 1){
+            navigationItem.title = "1 Game - " + String(gameStore.allGames[0].points) + " points"
+        }else if(count > 1){
+            var totalPoints = 0
+            for game in gameStore.allGames{
+                totalPoints = totalPoints + game.points
+            }
+            navigationItem.title = String(count) + " Games - " + String(totalPoints) + " points"
+        }
     }
 }

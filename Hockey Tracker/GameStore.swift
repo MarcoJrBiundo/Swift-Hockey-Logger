@@ -10,6 +10,12 @@ import UIKit
 
 class GameStore{
     var allGames = [Game]()
+    let itemArchiveUrl: URL = {
+        let documentDirectories = FileManager.default.urls(for:
+            .documentDirectory, in: .userDomainMask)
+        let documentDirectory = documentDirectories.first!
+        return documentDirectory.appendingPathComponent("games.plist")
+    }()
     
     
     
@@ -36,5 +42,19 @@ class GameStore{
         let movedGame = allGames[fromIndex]
         allGames.remove(at: fromIndex)
         allGames.insert(movedGame, at: toIndex)
+    }
+    
+    func saveChanges() -> Bool{
+        print("Saving games to: \(itemArchiveUrl)")
+        do{
+            let encoder = PropertyListEncoder()
+            let data = try encoder.encode(allGames)
+            try data.write(to: itemArchiveUrl, options: [.atomic])
+            print("Saved all games")
+            return true
+        }catch{
+            print("Error encoding allGames: \(error)")
+            return false
+        }
     }
 }

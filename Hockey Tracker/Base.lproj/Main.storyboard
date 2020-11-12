@@ -15,38 +15,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="bTe-jq-wij">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hpr-f4-K5l">
-                                    <rect key="frame" x="8" y="15" width="195" height="30"/>
-                                    <state key="normal" title="Edit"/>
-                                    <connections>
-                                        <action selector="toggleEditingMode:" destination="ftw-tu-qHg" eventType="touchUpInside" id="Zbv-KK-Uyr"/>
-                                    </connections>
-                                </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0oh-ow-1l4">
-                                    <rect key="frame" x="211" y="15" width="195" height="30"/>
-                                    <state key="normal" title="Add"/>
-                                    <connections>
-                                        <action selector="addNewGame:" destination="ftw-tu-qHg" eventType="touchUpInside" id="s47-O8-dwt"/>
-                                    </connections>
-                                </button>
-                            </subviews>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                            <constraints>
-                                <constraint firstItem="0oh-ow-1l4" firstAttribute="centerY" secondItem="bTe-jq-wij" secondAttribute="centerY" id="2Vk-9q-a5p"/>
-                                <constraint firstItem="Hpr-f4-K5l" firstAttribute="centerY" secondItem="bTe-jq-wij" secondAttribute="centerY" id="FRt-Zq-Kxh"/>
-                                <constraint firstItem="0oh-ow-1l4" firstAttribute="leading" secondItem="Hpr-f4-K5l" secondAttribute="trailing" constant="8" id="iva-zE-Hbb"/>
-                                <constraint firstItem="0oh-ow-1l4" firstAttribute="width" secondItem="Hpr-f4-K5l" secondAttribute="width" id="kwd-1Z-1RI"/>
-                                <constraint firstItem="Hpr-f4-K5l" firstAttribute="leading" secondItem="bTe-jq-wij" secondAttribute="leading" constant="8" id="y2e-lc-9mB"/>
-                                <constraint firstAttribute="trailing" secondItem="0oh-ow-1l4" secondAttribute="trailing" constant="8" id="yjI-hj-D75"/>
-                            </constraints>
-                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UITableViewCell" textLabel="4Cc-WO-afk" imageView="9dE-WF-Kiq" rowHeight="65" style="IBUITableViewCellStyleDefault" id="JC5-5Y-1eK" customClass="GameCell" customModule="Hockey_Tracker" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="88" width="414" height="65"/>
+                                <rect key="frame" x="0.0" y="28" width="414" height="65"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JC5-5Y-1eK" id="2x2-Wd-Jrz">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="65"/>
@@ -75,7 +46,13 @@
                             <outlet property="delegate" destination="ftw-tu-qHg" id="GUq-Bb-rMc"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="b2H-dq-ya4"/>
+                    <navigationItem key="navigationItem" id="b2H-dq-ya4">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="2QM-wm-7dr">
+                            <connections>
+                                <action selector="addNewGame:" destination="ftw-tu-qHg" id="8rD-DH-kYK"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v3s-Fg-Hvq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -105,6 +82,9 @@
                                                 <rect key="frame" x="83.5" y="0.0" width="314.5" height="67"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="u7n-KW-T6w" id="YOq-On-LIZ"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -117,10 +97,13 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FhV-fN-QBI">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FhV-fN-QBI">
                                                 <rect key="frame" x="83.5" y="0.0" width="314.5" height="67"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="u7n-KW-T6w" id="M9w-tA-x0b"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -133,10 +116,13 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BFc-r5-fPJ">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BFc-r5-fPJ">
                                                 <rect key="frame" x="83.5" y="0.0" width="314.5" height="67.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="u7n-KW-T6w" id="SW4-Ed-Z02"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -149,10 +135,13 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Tjj-5N-biu">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Tjj-5N-biu">
                                                 <rect key="frame" x="83.5" y="0.0" width="314.5" height="67"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="u7n-KW-T6w" id="GFc-Yq-Ht9"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -179,6 +168,7 @@
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="tBx-8c-1sa" firstAttribute="bottom" secondItem="Nge-Rg-M3C" secondAttribute="bottom" constant="8" id="BMQ-0T-3Cs"/>
                             <constraint firstItem="tBx-8c-1sa" firstAttribute="trailing" secondItem="Nge-Rg-M3C" secondAttribute="trailing" constant="8" id="BgD-wT-Pk0"/>
@@ -186,6 +176,9 @@
                             <constraint firstItem="Nge-Rg-M3C" firstAttribute="leading" secondItem="tBx-8c-1sa" secondAttribute="leading" constant="8" id="wbo-BN-Vky"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="tBx-8c-1sa"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="AWN-Fs-w2F" appends="YES" id="Do7-gf-MMn"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="uvg-FQ-drq"/>
                     <connections>
@@ -197,6 +190,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="49g-ib-w83" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="AWN-Fs-w2F">
+                    <connections>
+                        <action selector="backgroundTapped:" destination="u7n-KW-T6w" id="j0O-Ai-bdp"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1900.0000000000002" y="237.72321428571428"/>
         </scene>

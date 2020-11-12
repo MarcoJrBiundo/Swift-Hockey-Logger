@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Game: Equatable {
+class Game: Equatable, Codable {
     
     var opponent: String
     var goals: Int{
@@ -25,7 +25,7 @@ class Game: Equatable {
                 self.assists = 0
             }
             
-        }
+        }    
     }
     var points: Int
     var plusMinus: Int
